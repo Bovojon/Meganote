@@ -13,6 +13,16 @@
 				service.notes = res.data; // The .data() method allows us to attach data of any type to DOM elements
 			});
 			return notesPromise
-		}
+		};
+
+		service.create = function(note){
+			var notesPromise = $http.post('https://meganote.herokuapp.com/notes', {
+				note: note
+			});
+			notesPromise.then(function(){
+				service.notes.unshift(res.data.note);
+			});
+			return notesPromise;
+		};
 	}
 }());
