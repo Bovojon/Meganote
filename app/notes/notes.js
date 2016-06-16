@@ -5,7 +5,9 @@ angular.module('meganote.notes', ['ui.router'])
   .config(notesConfig)
   .controller('NotesController', NotesController);
 
-//Build config function for .config
+// Inorder to use strict dependency injection:
+  notesConfig.$inject = ['$stateProvider'];
+// Thenuild config function for .config
   function notesConfig($stateProvider){
     $stateProvider
 
@@ -21,6 +23,7 @@ angular.module('meganote.notes', ['ui.router'])
     });
   }
 
+  NotesController.$inject = ['$scope'];
 // Build NotesController for controller
   function NotesController($scope){
     $scope.notes = []; //an array
