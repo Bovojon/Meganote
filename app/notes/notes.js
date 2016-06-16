@@ -28,9 +28,11 @@ angular.module('meganote.notes', ['ui.router'])
   function NotesController($state, $scope, NotesService){
     $state.go('notes.form');
 
-    NotesService.getNotes();
+    NotesService.getNotes()
+      .then(function(){
+        $scope.notes = NotesService.notes;
+      });
 
-    $scope.notes = []; //an array
     $scope.note = { title:'', body:'' }; //reset input fields at beginning
 
     $scope.save = function(){
