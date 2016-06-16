@@ -19,7 +19,9 @@
      <input
        type="submit"
        name="commit"
-       value="Save"
+       value="{{ note._id ? 'Update Note' : 'Create Note' }}" 
        class="btn btn-default">
    </div>
+
+   <!-- Conditional (ternary) Operator goes: condition ? expr1 : expr2  -->
  </form>
