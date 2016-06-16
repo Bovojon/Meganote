@@ -27,13 +27,17 @@ angular.module('meganote.notes', ['ui.router'])
 // Build NotesController for controller
   function NotesController($state, $scope){
     $state.go('notes.form');
-    
+
     $scope.notes = []; //an array
     $scope.note = { title:'', body:'' }; //reset input fields at beginning
 
     $scope.save = function(){
     $scope.notes.push($scope.note); // The push() method adds one or more elements to the end of an array and returns the new length of the array.
     $scope.note = { title:'', body:'' }; //reset after submitting
+    }
+
+    $scope.edit = function(note){
+      $scope.note = note;
     }
 
   }
