@@ -45,9 +45,11 @@ angular.module('meganote.notes', ['ui.router'])
         NotesService.update($scope.note);
       }
       else{
-        NotesService.create($scope.note);
+        NotesService.create($scope.note)
+          .then(function(res){
+            $scope.note = res.data.note;
+          });
       }
-      $scope.clearForm();
     };
 
     $scope.edit = function(note){
