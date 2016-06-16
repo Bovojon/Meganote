@@ -21,6 +21,9 @@
        name="commit"
        value="{{ note._id ? 'Update Note' : 'Create Note' }}" 
        class="btn btn-default">
+
+       <a ng-click="delete()"><i class="fa fa-trash-o fa-lg"></i></a>
+       
    </div>
 
    <!-- Conditional (ternary) Operator goes: condition ? expr1 : expr2  -->

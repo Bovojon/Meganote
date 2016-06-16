@@ -56,6 +56,13 @@ angular.module('meganote.notes', ['ui.router'])
       $scope.note = angular.copy(note); //Edit copies of notes, rather than the originals
     };
 
+    $scope.delete = function(){
+      NotesService.delete($scope.note)
+        .then(function(){
+          $scope.clearForm();
+        });
+    };
+
     $scope.clearForm();
   }
 }());
