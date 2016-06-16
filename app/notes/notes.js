@@ -46,7 +46,7 @@ angular.module('meganote.notes', ['ui.router'])
     };
 
     $scope.edit = function(note){
-      $scope.note = note;
+      $scope.note = angular.copy(note);
     };
 
     $scope.clearForm();
