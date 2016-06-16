@@ -41,12 +41,17 @@ angular.module('meganote.notes', ['ui.router'])
 
 
     $scope.save = function(){
-      NotesService.create($scope.note);
+      if($scope.note._id){
+        NotesService.update($scope.note);
+      }
+      else{
+        NotesService.create($scope.note);
+      }
       $scope.clearForm();
     };
 
     $scope.edit = function(note){
-      $scope.note = angular.copy(note);
+      $scope.note = angular.copy(note); //Edit copies of notes, rather than the originals
     };
 
     $scope.clearForm();
