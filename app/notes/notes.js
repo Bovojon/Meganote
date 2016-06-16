@@ -33,17 +33,23 @@ angular.module('meganote.notes', ['ui.router'])
         $scope.notes = NotesService.notes;
       });
 
-    $scope.note = { title:'', body_html:'' }; //reset input fields at beginning
+    // $scope.note = { title:'', body_html:'' }; //reset input fields at beginning
+
+    $scope.clearForm = function(){
+      $scope.note = { title:'', body_html: '' };
+    };
+
 
     $scope.save = function(){
-    $scope.notes.push($scope.note); // The push() method adds one or more elements to the end of an array and returns the new length of the array.
-    $scope.note = { title:'', body_html:'' }; //reset after submitting
-    }
+      NotesService.create($scope.note);
+      $scope.clearForm();
+    };
 
     $scope.edit = function(note){
       $scope.note = note;
-    }
+    };
 
+    $scope.clearForm();
   }
 }());
 
