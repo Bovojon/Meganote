@@ -1,6 +1,5 @@
 //Wrap in IIFE
 (function(){
-
 angular.module('meganote.notes', ['ui.router'])
   .config(notesConfig)
   .controller('NotesController', NotesController);
@@ -39,14 +38,17 @@ angular.module('meganote.notes', ['ui.router'])
       $scope.note = { title:'', body_html: '' };
     };
 
-
     $scope.save = function(){
       if($scope.note._id){
         NotesService.update($scope.note)
-          .then(function(res){
-            $scope.note = res.data.note;
-            Flash.create('success', res.data.message);
-          });
+          .then(
+            function(res){
+              $scope.note = res.data.note;
+              Flash.create('success', res.data.message);
+            },
+            function(){
+              Flash.create('danger', 'Oops');
+            });
       }
       else{
         NotesService.create($scope.note)
@@ -56,7 +58,7 @@ angular.module('meganote.notes', ['ui.router'])
               Flash.create('success', res.data.message);
             },
             function(){
-              Flash.create('danger', 'No');
+              Flash.create('danger', 'Oops');
             });
       }
     };

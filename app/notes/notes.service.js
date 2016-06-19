@@ -8,7 +8,7 @@
 		service.notes = [];
 
 		service.getNotes = function(){
-			var notesPromise = $http.get('https://meganote.herokuapp.com/notes');
+			var notesPromise = $http.get('http://localhost:3030/');
 			notesPromise.then(function(res){
 				service.notes = res.data; // The .data() method allows us to attach data of any type to DOM elements
 			});
@@ -50,7 +50,7 @@
 		service.removeById = function(id){
 			for (var i=0; i<service.notes.length; i++){
 				if (service.notes[i]._id === id){
-					return service.notes.splice(i,1); //splice method starts at i and 1 indictates how many to remove 
+					return service.notes.splice(i,1); //splice method starts at i and 1 indictates how many to remove
 				}
 			}
 		};
