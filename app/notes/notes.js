@@ -25,11 +25,12 @@ angular.module('meganote.notes', ['ui.router'])
   NotesController.$inject = ['$state', '$scope', 'Flash', 'NotesService'];
 // Build NotesController for controller
   function NotesController($state, $scope, Flash, NotesService){
-    $state.go('notes.form');
+    //$state.go('notes.form');
 
     NotesService.getNotes()
       .then(function(){
         $scope.notes = NotesService.notes;
+        $scope.note = NotesService.find($state.params.noteId);
       });
 
     // $scope.note = { title:'', body_html:'' }; //reset input fields at beginning
@@ -63,9 +64,9 @@ angular.module('meganote.notes', ['ui.router'])
       }
     };
 
-    $scope.edit = function(note){
-      $scope.note = angular.copy(note); //Edit copies of notes, rather than the originals
-    };
+    // $scope.edit = function(note){
+      // $scope.note = angular.copy(note); //Edit copies of notes, rather than the originals
+    // };
 
     $scope.delete = function(){
       NotesService.delete($scope.note)
@@ -74,6 +75,6 @@ angular.module('meganote.notes', ['ui.router'])
         });
     };
 
-    $scope.clearForm();
+    // $scope.clearForm();
   }
 }());
