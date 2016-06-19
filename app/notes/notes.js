@@ -1,8 +1,8 @@
 //Wrap in IIFE
 (function(){
-angular.module('meganote.notes', ['ui.router'])
-  .config(notesConfig)
-  .controller('NotesController', NotesController);
+  angular.module('meganote.notes', ['ui.router'])
+    .config(notesConfig)
+    .controller('NotesController', NotesController);
 
 // Inorder to use strict dependency injection:
   notesConfig.$inject = ['$stateProvider'];
@@ -11,26 +11,26 @@ angular.module('meganote.notes', ['ui.router'])
     $stateProvider
 
     .state('notes', {
-    url: '/notes',
-    templateUrl: 'notes/notes.html',
-    controller: 'NotesController'
+      url: '/notes',
+      templateUrl: 'notes/notes.html',
+      controller: 'NotesController'
     })
 
     .state('notes.form', {
-    url: '/:noteId',
-    templateUrl: 'notes/notes-form.html'
+      url: '/:noteId',
+      templateUrl: 'notes/notes-form.html',
+      controller: 'NotesFormController'
     });
   }
 
-  NotesController.$inject = ['$state', '$scope', 'Flash', 'NotesService'];
+  NotesController.$inject = ['$scope', 'Flash', 'NotesService'];
 // Build NotesController for controller
-  function NotesController($state, $scope, Flash, NotesService){
+  function NotesController($scope, Flash, NotesService){
     //$state.go('notes.form');
 
     NotesService.getNotes()
       .then(function(){
         $scope.notes = NotesService.notes;
-        $scope.note = NotesService.find($state.params.noteId);
       });
 
     // $scope.note = { title:'', body_html:'' }; //reset input fields at beginning
@@ -75,6 +75,6 @@ angular.module('meganote.notes', ['ui.router'])
         });
     };
 
-    // $scope.clearForm();
+    $scope.clearForm();
   }
 }());
