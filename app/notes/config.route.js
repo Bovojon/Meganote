@@ -19,8 +19,9 @@
 
       .state('notes.form', {
         url: '/:noteId',
-        templateUrl: 'notes/notes-form.html',
-        controller: 'NotesFormController'
+        templateUrl: 'notes/notesForm/notes-form.html',
+        controller: 'NotesFormController',
+        controllerAs: 'vm',
       });
   }
 
