@@ -3,7 +3,9 @@
     .service('UsersService', [
       '$http',
       'API_BASE',
-      ($http, API_BASE) => {
+      'AuthToken',
+      'CurrentUser'
+      ($http, API_BASE, AuthToken, CurrentUser) => {
 
         const apiURI = `${API_BASE}users/`;
 
@@ -14,7 +16,8 @@
             })
               .then(
                 res => {
-                  console.log(res.data);
+                  AuthToken.set(res.data.authToken);
+                  CurrentUser.set(res.data.user);
                 }
               );
           }
