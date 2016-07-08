@@ -1,10 +1,11 @@
-(function() {
+{
   angular.module('meganote.notes')
     .factory('NotesService', NotesService);
 
   NotesService.$inject = ['$http', 'API_BASE'];
   function NotesService($http, API_BASE) {
-    var service = {
+    const apiURI = `${API_BASE}notes/`;
+    const service = {
       notes: [],
       getNotes: getNotes,
       create: create,
@@ -19,52 +20,50 @@
     //////////////////////
 
     function getNotes() {
-      var notesPromise = $http.get();
+      const notesPromise = $http.get(API_BASE);
 
-      notesPromise.then(function(res) {
-        service.notes = res.data;
-      });
+      notesPromise
+        .then(res => service.notes = res.data);
 
       return notesPromise;
     }
 
     function create(note) {
-      var notesPromise = $http.post(API_BASE, {
+      const notesPromise = $http.post(API_BASE, {
         note: note
       });
 
-      notesPromise.then(function(res) {
-        service.notes.unshift(res.data.note);
-      });
+      notesPromise
+        .then(res => service.notes.unshift(res.data.note));
 
       return notesPromise;
     }
 
     function update(note) {
-      var notesPromise = $http.put(API_BASE + note._id, {
+      const notesPromise = $http.put(apiURI, {
         note: note
       });
 
-      notesPromise.then(function(res) {
-        service.removeById(res.data.note._id);
-        service.notes.unshift(res.data.note);
-      });
+      notesPromise
+        .then(res => {
+          service.removeById(res.data.note._id);
+          service.notes.unshift(res.data.note);
+        });
 
       return notesPromise;
     }
 
     function destroy(note) {
-      var notesPromise = $http.delete(API_BASE + note._id);
+      const notesPromise = $http.delete(apiURI);
 
-      notesPromise.then(function(res) {
-        service.removeById(res.data.note._id);
-      });
+      notesPromise
+        .then(res => service.removeById(res.data.note._id));
 
       return notesPromise;
     }
 
     function removeById(id) {
-      for (var i=0; i < service.notes.length; i++) {
+      for (let i=0; i < service.notes.length; i++) {
         if (service.notes[i]._id === id) {
           return service.notes.splice(i, 1);
         }
@@ -72,11 +71,11 @@
     }
 
     function find(id) {
-      for (var i=0; i < service.notes.length; i++) {
+      for (let i=0; i < service.notes.length; i++) {
         if (service.notes[i]._id === id) {
           return angular.copy(service.notes[i]);
         }
       }
     }
   }
-}());
+}
