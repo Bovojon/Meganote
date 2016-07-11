@@ -7,11 +7,12 @@
         class UserProfileController {
           constructor() {
             var vm = this;
-            vm.user = CurrentUser.get();
+            vm.user = angular.copy(CurrentUser.get());
           }
 
           submit() {
-            console.log('submitted!')
+            var vm = this;
+            UsersService.update(vm.user);
           }
 
         }
