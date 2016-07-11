@@ -32,7 +32,7 @@
             template: `
               <div class="user-links">
                 <span ng-show="vm.signedIn()">
-                  Signed in as {{ vm.user().name }}
+                  Signed in as <a ui-sref="user-profile">{{ vm.user().name }} </a>
                   |
                   <a ui-sref="sign-up" ng-click="vm.logout()">Logout</a>
                 </span>
