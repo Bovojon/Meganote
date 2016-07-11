@@ -14,10 +14,14 @@
         get() {
           return this.user || {};
         }
-
+        
         clear() {
           this.user = undefined;
           $window.localStorage.removeItem('currentUser');
+        }
+
+        signedIn() {
+          return !!(this.get()._id); // use !! to return boolean value
         }
 
       }
