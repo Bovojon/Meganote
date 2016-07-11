@@ -2,8 +2,8 @@
   angular.module('meganote.users')
     .directive('userLinks', () => [
 
-      'CurrentUser'
-      (CurrentUser) => {
+      'AuthToken', 'CurrentUser'
+      (AuthToken, CurrentUser) => {
           class UserLinkController {
             constructor() {
 
@@ -14,7 +14,12 @@
             }
 
             signedIn() {
-              return CurrentUser.signedIn();  
+              return CurrentUser.signedIn();
+            }
+
+            logout() {
+              AuthToken.clear();
+              CurrentUser.clear();
             }
 
           }
@@ -25,8 +30,17 @@
             controllerAs: 'vm',
             bindToController: true,
             template: `
-              <div class="user-links" ng-show="vm.signedIn()" >
-                Signed in as {{ vm.user().name }}
+              <div class="user-links">
+                <span ng-show="vm.signedIn()">
+                  Signed in as {{ vm.user().name }}
+                  |
+                  <a ui-sref="sign-up" ng-click="vm.logout()">Logout</a>
+                </span>
+
+                <span ng-show="!vm.signedIn()">
+                  <a ui-sref="sign-up">Sign up!</a>  // use ui-sref to link to one of our states
+                </span>
+
               </div>`,
           };
         }
