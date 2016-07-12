@@ -18,7 +18,7 @@
 
       .state('user-profile', {
         url: '/profile',
-        template:
+        template: '<user-profile></user-profile>',
       });
   }
 }

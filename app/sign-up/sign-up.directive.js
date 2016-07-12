@@ -12,8 +12,9 @@
           }
           submit() {
             UsersService.create(this.user)
-              .then(() => $state.go('notes.form', { noteId: undefined })  // Tells it to go to that specific note with id
-            );
+              .then(
+                () => $state.go('notes.form', { noteId: undefined })
+              );
           }
         }
 
