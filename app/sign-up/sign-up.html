@@ -2,7 +2,12 @@
   <div class="row">
     <div class="col-xs-6 col-xs-offset-4">
       <h3>Sign Up for Meganote</h3>
-      <form id="new_user" ng-submit="vm.submit()">
+      <form id="new_user" ng-submit="vm.submit()" name="authForm" novalidate>
+
+        <!-- Server Authentication Errors -->
+        <div class="alert alert-danger" ng-show="vm.error">
+        </div>
+
         <p>
           <label for="name">Full Name</label><br>
           <input
@@ -12,6 +17,12 @@
             ng-model="vm.user.name"
             required>
         </p>
+        <!-- Full Name errors -->
+        <div class="alert alert-danger alert-dismissible" ng-show="authForm.$submitted && authForm.password.$error.required">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          Full Name can't be blank
+        </div>
+
         <p>
           <label for="username">Username</label><br>
           <input
@@ -20,6 +31,12 @@
             ng-model="vm.user.username"
             required>
         </p>
+        <!-- Username errors -->
+        <div class="alert alert-danger alert-dismissible" ng-show="authForm.$submitted && authForm.password.$error.required">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          Username can't be blank
+        </div>
+
         <p>
           <label for="password">Password</label><br>
           <input
@@ -36,11 +53,20 @@
             ng-model="vm.user.passwordConfirmation"
             required>
         </p>
+
+        <!-- Password errors -->
+        <div class="alert alert-warning alert-dismissible" ng-show="authForm.$submitted && authForm.password.$error.required">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Password can't be blank</strong>
+        </div>
+
+
         <input type="submit" name="commit" value="Sign Up" class="btn btn-default">
         <span class="login">
           Already have an account?
           <a ui-sref="sign-in">Log in.</a>
         </span>
+
       </form>
     </div>
   </div>
