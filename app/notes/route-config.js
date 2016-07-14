@@ -28,7 +28,7 @@
         title: 'Notes'
       },
       onExit: ['Flash', (Flash) => {
-        Flash.create();
+        Flash.clear();
       }],
     });
   }

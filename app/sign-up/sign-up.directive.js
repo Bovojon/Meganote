@@ -3,7 +3,7 @@
     .directive('signUp', [
 
       '$state',
-      'Flash'
+      'Flash',
       'UsersService',
       ($state, Flash, UsersService) => {
 
@@ -14,7 +14,7 @@
           }
           submit() {
             if (Number.isInteger(flash)) {
-              FLash.dismiss(flash);
+              Flash.dismiss(flash);
               flash = false;
             }
             UsersService.create(this.user)
@@ -22,13 +22,13 @@
                 () => $state.go('notes.form', { noteId: undefined }),
 
                 (res) => {
-                  ler errors = '',
-                  for (let errors of res.data.errors) {
+                  let errors = '';
+                  for (let error of res.data.errors) {
                     errors += `<li>${error}</li>`;
                   }
                   flash = Flash.create('danger', `
-                  <p>Oops! Something went wrong.</p>
- +                <ul>${errors}</ul>
+                    <p>Oops! Something went wrong.</p>
+                    <ul>${errors}</ul>
                   `);
                 }
               );
@@ -40,7 +40,7 @@
           controller: SignUpController,
           controllerAs: 'vm',
           bindToController: true,
-          templateUrl: '/sign-up/sign-up.html',
+          templateUrl: 'sign-up/sign-up.html',
         };
       }
     ]);
