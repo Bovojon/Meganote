@@ -12,6 +12,9 @@
         data: {
           title: 'Sign Up'
         },
+        onExit: ['Flash', (Flash) => {
+          Flash.clear();
+        }],
       })
 
       .state('sign-in', {
@@ -25,7 +28,7 @@
       .state('user-profile', {
         url: '/profile',
         template: '<user-profile></user-profile>',
-       data: {
+        data: {
           title: 'Profile'
         },
       });
