@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="meganote" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="meganote" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="meganote" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="meganote" ng-strict-di class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title ng-bind="$state.current.data.title + ' - Meganote'">Meganote</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic|Oxygen:400,300,700">
+    <link rel="stylesheet" href="content/bundle.css" charset="utf-8">
+  </head>
+  <body>
+
+    <div class="container wrap">
+      <div class="row">
+        <div class="col-xs-12">
+          <header>
+            <div class="well">
+              Meganote
+              <user-links></user-links>
+            </div>
+          </header>
+        </div>
+      </div>
+      <div ui-view></div>
+    </div>
+
+    <script src="content/vendor.js"></script>
+    <script src="content/bundle.js"></script>
+  </body>
+</html>
