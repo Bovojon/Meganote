@@ -33,16 +33,11 @@
     });
   }
 
-  authenticated.$inject = [''];
+  authenticated.$inject = ['CurrentUser'];
   function authenticated(CurrentUser) {
     return new Promise((resolve, reject) => {
-      if (CurrentUser.signedIn()) {
-        resolve();
-      }
-      else {
-        reject();
-      }
-
+      if (CurrentUser.signedIn()) { resolve(); }
+      else { reject(); }
     });
   }
 }

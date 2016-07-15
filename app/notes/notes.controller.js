@@ -8,13 +8,12 @@
     vm.notes = Note.query();
     vm.refresh = refresh;
 
-    //////////////////////
+    //////////////////////////
 
     function refresh() {
       Note.query().$promise.then(notes => {
         vm.notes = notes;
       });
-
     }
   }
 }

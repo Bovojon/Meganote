@@ -1,5 +1,5 @@
 {
-  angular.module('meganotes.notes')
+  angular.module('meganote.notes')
     .factory('Note', Note);
 
   Note.$inject = ['$resource', 'API_BASE'];

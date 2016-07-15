@@ -13,8 +13,8 @@
 
     /////////////////
 
-    function refresh(){
-
+    function refresh() {
+      $scope.$parent.vm.refresh();
     }
 
     function get() {
@@ -30,11 +30,12 @@
 
     function save() {
       if (vm.note._id) {
-        Note.update(vm.note)
+        vm.note.$update({ id: vm.note._id })
           .then(
-            res => {
-              vm.note = angular.copy(res.data.note);
-              Flash.create('success', res.data.message);
+            note => {
+              vm.refresh();
+              vm.note = note;
+              Flash.create('success', 'Saved!');
             },
             () => Flash.create('danger', 'Oops! Something went wrong.')
           );
@@ -43,8 +44,8 @@
         vm.note.$save()
           .then(
             note => {
-              vm.note = note;
               vm.refresh();
+              vm.note = note;
               Flash.create('success', 'Saved!');
               $state.go('notes.form', { noteId: vm.note._id });
             },
@@ -55,11 +56,10 @@
 
     function destroy() {
       vm.note.$delete({ id: vm.note._id })
-        .then( () => {
+        .then(() => {
           vm.refresh();
           $state.go('notes.form', { noteId: undefined });
-        }
-        );
+        });
     }
   }
 }
