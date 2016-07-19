@@ -32,4 +32,4 @@ This will start a web server on port 8000.
 
 To deploy Meganote, copy the `app` folder, including `bower components` subfolder (which is not included in the repo) to your remote server. 
 
-(LIVE EXAMPLE)[https://bovojon.github.io/Meganote/#/sign-in]
+[LIVE EXAMPLE](https://bovojon.github.io/Meganote/#/sign-in)
